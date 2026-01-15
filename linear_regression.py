@@ -12,3 +12,6 @@ class LinearRegression:
 		n_features = x.shape[1]
 		self.weights = np.zeros(n_features)
 		self.bias = 0.0
+	
+	def predict(self, x):
+		return np.dot(x,self.weights) + self.bias
