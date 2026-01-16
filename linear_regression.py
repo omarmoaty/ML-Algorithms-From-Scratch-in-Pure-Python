@@ -9,6 +9,7 @@ class LinearRegression:
 		self.bias = None
 	
 	def fit(self, x, y):
+		self.loss_history = []
 		n_samples, n_features = x.shape
 		self.weights = np.zeros(n_features)
 		self.bias = 0.0
@@ -21,6 +22,9 @@ class LinearRegression:
 
 			self.weights -= self.learning_rate * dw
 			self.bias -= self.learning_rate * db
+
+			loss = self._mse(y,y_pred)
+			self.loss_history.append(loss)
 	
 	def predict(self, x):
 		return np.dot(x,self.weights) + self.bias 
