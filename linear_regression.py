@@ -16,7 +16,7 @@ class LinearRegression:
 		for _ in range(self.epochs):
 			y_pred = self.predict(x)
 
-			dw = (1/n_samples) * np.dot(x.t, (y_pred - y))
+			dw = (1/n_samples) * np.dot(x.T, (y_pred - y))
 			db = (1/n_samples) * np.sum(y_pred - y)
 
 			self.weights -= self.learning_rate * dw
