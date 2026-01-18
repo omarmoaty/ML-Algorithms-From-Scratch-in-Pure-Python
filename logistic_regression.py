@@ -36,3 +36,7 @@ class Logestic_Regression:
 
             loss = self._binary_cross_entropy_loss(y, y_pred)
             self.loss_history.append(loss)
+
+    def predict(self, x, threshold=0.5):
+        probabilities = self.predict_probability(x)
+        return (probabilities >= threshold).astype(int)
