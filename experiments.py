@@ -27,17 +27,24 @@ def run_linear_experiment():
 
 #experiment on Logistic Regression
 def generate_classification_data(n_samples=2000):
-    x=np.random.randn(n_samples,2)
-    y=(x[:,0]+x[:,1]>0).astype(int)
-    return x,y
+    X=np.random.randn(n_samples,2)
+    noise = np.random.randn(n_samples) * 0.2
+    y = ((X[:, 0] + X[:, 1] + noise) > 0).astype(int)
+    return X,y
 def run_logistic_experiment():
     x,y = generate_classification_data()
 
-    model = Logestic_Regression()
+    model = Logestic_Regression(learning_rate=.01,epochs=50)
     model.fit(x,y)
 
     predictions = model.predict(x)
     accuracy = np.mean(predictions==y)
+
+    plt.plot(model.loss_history)
+    plt.xlabel("Epoch")
+    plt.ylabel("Binary Cross-Entropy Loss")
+    plt.title("Logistic Regression Training Loss")
+    plt.show()
 
     print('training accuracy = ',accuracy)
 if __name__ == "__main__":
