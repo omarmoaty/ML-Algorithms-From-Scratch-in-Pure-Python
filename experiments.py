@@ -2,6 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from linear_regression import LinearRegression
 from logistic_regression import Logestic_Regression
+from knn import KNN
+
 #experiment on linear Regression
 def generate_data(n_samples=100):
     X = np.random.rand(n_samples, 1)
@@ -47,9 +49,26 @@ def run_logistic_experiment():
     plt.show()
 
     print('training accuracy = ',accuracy)
+
+#experiment on KNN algorithm
+def run_knn_experiment():
+    X = np.array([
+        [1, 2],
+        [2, 3],
+        [3, 3],
+        [6, 5],
+        [7, 7],
+        [8, 6]
+    ])
+    y = np.array([0, 0, 0, 1, 1, 1])
+
+    model = KNN(k=3)
+    model.fit(X, y)
+
+    predictions = model.predict(X)
+    print("Predictions:", predictions)
+
 if __name__ == "__main__":
     #run_linear_experiment()
-    run_logistic_experiment()
-
-
-
+    #run_logistic_experiment()
+    run_knn_experiment()
